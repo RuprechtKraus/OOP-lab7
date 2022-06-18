@@ -1,8 +1,10 @@
 #pragma once
 #include <vector>
+#include <functional>
 
-template<typename T, typename Less = std::less<>>
-bool FindMax(const std::vector<T>& vec, T& maxValue, const Less& less = Less{}) noexcept
+template<typename T>
+bool FindMax(const std::vector<T>& vec, T& maxValue, 
+	std::function<bool(const T&, const T&)> less = std::less<>{}) noexcept
 {
 	if (vec.empty())
 	{

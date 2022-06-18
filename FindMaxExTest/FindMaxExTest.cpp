@@ -40,7 +40,7 @@ namespace FindMaxExTest
 		{
 			std::vector<int> vec{ 4, 8, 0, 1, 6, -5, 4 };
 			int max{};
-			Assert::IsTrue(FindMax(vec, max, [](int left, int right) { return left < right; }), 
+			Assert::IsTrue(FindMax<int>(vec, max, [](int left, int right) { return left < right; }), 
 				L"FindMax on not empty vector returned false");
 			Assert::AreEqual(8, max, L"Expected max value doesn't match actual");
 		}
@@ -49,7 +49,7 @@ namespace FindMaxExTest
 		{
 			std::vector<int> vec{ 4, 8, 0, 1, 6, -5, 4 };
 			int max{};
-			Assert::IsTrue(FindMax(vec, max, [](int left, int right) { return left > right; }),
+			Assert::IsTrue(FindMax<int>(vec, max, [](int left, int right) { return left > right; }),
 				L"FindMax on not empty vector returned false");
 			Assert::AreEqual(-5, max, L"Expected max value doesn't match actual");
 		}
@@ -94,7 +94,7 @@ namespace FindMaxExTest
 		{
 			std::vector<float> vec{ 4.5, 8.3, 0.3, 1.2, 6.7, -5.9, 4.2 };
 			float max{};
-			Assert::IsTrue(FindMax(vec, max, [](float left, float right) { return left < right; }),
+			Assert::IsTrue(FindMax<float>(vec, max, [](float left, float right) { return left < right; }),
 				L"FindMax on not empty vector returned false");
 			Assert::AreEqual(8.3f, max, L"Expected max value doesn't match actual");
 		}
@@ -103,7 +103,7 @@ namespace FindMaxExTest
 		{
 			std::vector<float> vec{ 4.5, 8.3, 0.3, 1.2, 6.7, -5.9, 4.2 };
 			float max{};
-			Assert::IsTrue(FindMax(vec, max, [](float left, float right) { return left > right; }),
+			Assert::IsTrue(FindMax<float>(vec, max, [](float left, float right) { return left > right; }),
 				L"FindMax on not empty vector returned false");
 			Assert::AreEqual(-5.9f, max, L"Expected max value doesn't match actual");
 		}
@@ -153,7 +153,7 @@ namespace FindMaxExTest
 				"relaxation", "abnormal", "minimize"
 			};
 			std::string max{};
-			Assert::IsTrue(FindMax(vec, max, [](std::string left, std::string right) { return left < right; }),
+			Assert::IsTrue(FindMax<std::string>(vec, max, [](std::string left, std::string right) { return left < right; }),
 				L"FindMax on not empty vector returned false");
 			Assert::AreEqual("salmon"s, max, L"Expected max value doesn't match actual");
 		}
@@ -165,7 +165,7 @@ namespace FindMaxExTest
 				"relaxation", "abnormal", "minimize"
 			};
 			std::string max{};
-			Assert::IsTrue(FindMax(vec, max, [](std::string left, std::string right) { return left > right; }),
+			Assert::IsTrue(FindMax<std::string>(vec, max, [](std::string left, std::string right) { return left > right; }),
 				L"FindMax on not empty vector returned false");
 			Assert::AreEqual("abnormal"s, max, L"Expected max value doesn't match actual");
 		}
@@ -193,7 +193,7 @@ namespace FindMaxExTest
 		TEST_METHOD(FindTallestSportsman)
 		{
 			Sportsman max{};
-			Assert::IsTrue(FindMax(m_vec, max, [](const Sportsman& left, const Sportsman& right) { 
+			Assert::IsTrue(FindMax<Sportsman>(m_vec, max, [](const Sportsman& left, const Sportsman& right) { 
 				return left.m_height < right.m_height;
 			}), L"FindMax on not empty vector returned false");
 			Assert::IsTrue(Sportsman{ "Ray Calderon", 196, 118 } == max, L"Expected max value doesn't match actual");
@@ -202,7 +202,7 @@ namespace FindMaxExTest
 		TEST_METHOD(FindFattestSportsman)
 		{
 			Sportsman max{};
-			Assert::IsTrue(FindMax(m_vec, max, [](const Sportsman& left, const Sportsman& right) {
+			Assert::IsTrue(FindMax<Sportsman>(m_vec, max, [](const Sportsman& left, const Sportsman& right) {
 				return left.m_weight < right.m_weight;
 			}), L"FindMax on not empty vector returned false");
 			Assert::IsTrue(Sportsman{ "Ray Calderon", 196, 118 } == max, L"Expected max value doesn't match actual");
@@ -211,7 +211,7 @@ namespace FindMaxExTest
 		TEST_METHOD(FindShortestSportsman)
 		{
 			Sportsman min{};
-			Assert::IsTrue(FindMax(m_vec, min, [](const Sportsman& left, const Sportsman& right) {
+			Assert::IsTrue(FindMax<Sportsman>(m_vec, min, [](const Sportsman& left, const Sportsman& right) {
 				return left.m_height > right.m_height;
 			}),	L"FindMax on not empty vector returned false");
 			Assert::IsTrue(Sportsman{ "Camilla Mays", 164, 59 } == min, L"Expected min value doesn't match actual");
@@ -220,7 +220,7 @@ namespace FindMaxExTest
 		TEST_METHOD(FindLightestSportsman)
 		{
 			Sportsman min{};
-			Assert::IsTrue(FindMax(m_vec, min, [](const Sportsman& left, const Sportsman& right) {
+			Assert::IsTrue(FindMax<Sportsman>(m_vec, min, [](const Sportsman& left, const Sportsman& right) {
 				return left.m_weight > right.m_weight;
 			}),
 				L"FindMax on not empty vector returned false");
