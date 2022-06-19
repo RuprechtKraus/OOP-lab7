@@ -8,6 +8,7 @@ template <typename T>
 class MyListConstIterator;
 
 #pragma region MyList
+#include <iostream>
 
 template <typename T>
 class MyList
@@ -482,7 +483,7 @@ public:
 
 	template <typename T>
 	friend bool operator!=(const MyListConstIterator<T>& left, const MyListConstIterator<T>& right) noexcept;
-	 
+
 protected:
 	MyListConstIterator(NodePtr ptr, const Container* container) noexcept;
 
