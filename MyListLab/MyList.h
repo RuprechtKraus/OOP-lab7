@@ -8,7 +8,6 @@ template <typename T>
 class MyListConstIterator;
 
 #pragma region MyList
-#include <iostream>
 
 template <typename T>
 class MyList

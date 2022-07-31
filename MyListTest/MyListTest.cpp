@@ -33,7 +33,7 @@ bool AreListsEqual(const MyList<T>& left, const MyList<T>& right)
 namespace MyListTest
 {
 	#pragma warning(push)
-	#pragma warning(disable : 26800)
+	#pragma warning(disable: 26800)
 
 	TEST_CLASS(StringMyListTest)
 	{

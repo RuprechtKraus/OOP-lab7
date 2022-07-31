@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{166dae93-26dc-4327-a657-ec025dc94284}</ProjectGuid>
-    <RootNamespace>FindMaxEx</RootNamespace>
+    <ProjectGuid>{5cc778e9-1470-41ab-9f7e-cbfe9419fa6f}</ProjectGuid>
+    <RootNamespace>VehicleLab</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -129,10 +129,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FindMaxEx.cpp" />
+    <ClCompile Include="Person.cpp" />
+    <ClCompile Include="PoliceMan.cpp" />
+    <ClCompile Include="Racer.cpp" />
+    <ClCompile Include="VehicleLab.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FindMaxExLib.h" />
+    <ClInclude Include="IBasicVehicle.h" />
+    <ClInclude Include="IPerson.h" />
+    <ClInclude Include="IPoliceMan.h" />
+    <ClInclude Include="IRacer.h" />
+    <ClInclude Include="Person.h" />
+    <ClInclude Include="PersonImpl.h" />
+    <ClInclude Include="PoliceMan.h" />
+    <ClInclude Include="Racer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
