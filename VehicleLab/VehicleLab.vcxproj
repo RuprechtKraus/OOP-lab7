@@ -105,10 +105,12 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Users\Ruprecht Kraus\source\repos\ООП\Lab7\VehicleLab;C:\Users\Ruprecht Kraus\source\repos\ООП\Lab7\VehicleLab\Vehicles\Interfaces;C:\Users\Ruprecht Kraus\source\repos\ООП\Lab7\VehicleLab\Vehicles;C:\Users\Ruprecht Kraus\source\repos\ООП\Lab7\VehicleLab\People\Interfaces;C:\Users\Ruprecht Kraus\source\repos\ООП\Lab7\VehicleLab\People;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\Ruprecht Kraus\source\repos\ООП\Lab7\VehicleLab\Vehicles;C:\Users\Ruprecht Kraus\source\repos\ООП\Lab7\VehicleLab\Vehicles\Interfaces;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -129,20 +131,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Person.cpp" />
-    <ClCompile Include="PoliceMan.cpp" />
-    <ClCompile Include="Racer.cpp" />
+    <ClCompile Include="People\Person.cpp" />
+    <ClCompile Include="People\PoliceMan.cpp" />
+    <ClCompile Include="People\Racer.cpp" />
     <ClCompile Include="VehicleLab.cpp" />
+    <ClCompile Include="Vehicles\Bus.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IBasicVehicle.h" />
-    <ClInclude Include="IPerson.h" />
-    <ClInclude Include="IPoliceMan.h" />
-    <ClInclude Include="IRacer.h" />
-    <ClInclude Include="Person.h" />
-    <ClInclude Include="PersonImpl.h" />
-    <ClInclude Include="PoliceMan.h" />
-    <ClInclude Include="Racer.h" />
+    <ClInclude Include="People\Interfaces\IPerson.h" />
+    <ClInclude Include="People\Interfaces\IPoliceMan.h" />
+    <ClInclude Include="People\Interfaces\IRacer.h" />
+    <ClInclude Include="People\Person.h" />
+    <ClInclude Include="People\PersonImpl.h" />
+    <ClInclude Include="People\PoliceMan.h" />
+    <ClInclude Include="People\Racer.h" />
+    <ClInclude Include="Vehicles\Bus.h" />
+    <ClInclude Include="Vehicles\CarBrand.h" />
+    <ClInclude Include="Vehicles\Interfaces\IBasicVehicle.h" />
+    <ClInclude Include="Vehicles\Interfaces\IBus.h" />
+    <ClInclude Include="Vehicles\Interfaces\ICar.h" />
+    <ClInclude Include="Vehicles\Interfaces\IPoliceCar.h" />
+    <ClInclude Include="Vehicles\Interfaces\IRacingCar.h" />
+    <ClInclude Include="Vehicles\Interfaces\ITaxi.h" />
+    <ClInclude Include="Vehicles\Interfaces\IVehicle.h" />
+    <ClInclude Include="Vehicles\VehicleImpl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

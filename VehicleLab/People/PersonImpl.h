@@ -11,7 +11,6 @@ public:
 protected:
 	PersonImpl(const std::string& name);
 
-private:
 	std::string m_name;
 };
 

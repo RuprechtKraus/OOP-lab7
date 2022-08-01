@@ -8,4 +8,6 @@ public:
 	virtual size_t GetPlaceCount() const = 0;
 	virtual size_t GetPassengerCount() const = 0;
 	virtual void RemoveAllPassengers() = 0;
+
+	virtual ~IBasicVehicle() = default;
 };

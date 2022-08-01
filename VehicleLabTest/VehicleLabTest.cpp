@@ -3,10 +3,36 @@
 #include "Person.h"
 #include "PoliceMan.h"
 #include "Racer.h"
+#include "Bus.h"
 #include <sstream>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std::string_literals;
+
+void VerifyVehicle(
+	const IBasicVehicle& vehicle, 
+	size_t expectedPlaceCount, 
+	size_t expectedPassengerCount,
+	bool expectedToBeEmpty,
+	bool expectedToBeFull)
+{
+	Assert::AreEqual(expectedPlaceCount, vehicle.GetPlaceCount(),
+		L"Place count is incorrect");
+	Assert::AreEqual(expectedPassengerCount, vehicle.GetPassengerCount(), 
+		L"Passenger count is incorrect");
+	Assert::AreEqual(expectedToBeEmpty, vehicle.IsEmpty());
+	Assert::AreEqual(expectedToBeFull, vehicle.IsFull());
+}
+
+Bus CreateBus(size_t placesCount, const std::vector<IPerson>& passengers)
+{
+	Bus b(placesCount);
+	for (const auto& p : passengers)
+	{
+		b.AddPassenger(std::make_shared<IPerson>(p));
+	}
+	return b;
+}
 
 namespace VehicleLabTest
 {
@@ -48,7 +74,111 @@ namespace VehicleLabTest
 		TEST_METHOD(TestGetAwardsCount)
 		{
 			Racer p("Michael Schumacher", 91);
-			Assert::AreEqual(static_cast<size_t>(91), p.GetAwardsCount(), L"Awards count are not equal");
+			Assert::AreEqual(size_t{ 91 }, p.GetAwardsCount(), L"Awards count are not equal");
+		}
+	};
+
+	TEST_CLASS(BusTest) 
+	{
+	public:
+
+		TEST_METHOD(TestEmptyBusProperties)
+		{
+			Bus b(50);
+			VerifyVehicle(b, 50, 0, true, false);
+		}
+
+		TEST_METHOD(TestBusPropertiesWithOnePassenger)
+		{
+			Bus b(50);
+			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
+			VerifyVehicle(b, 50, 1, false, false);
+		}
+
+		TEST_METHOD(TestFullBusProperties)
+		{
+			Bus b(2);
+			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
+			b.AddPassenger(std::make_shared<Person>("Venera Vagner"));
+			VerifyVehicle(b, 2, 2, false, true);
+		}
+
+		TEST_METHOD(TestAddPassengerToFullBus)
+		{
+			Bus b(1);
+			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
+			auto addPassenger = [&]() { b.AddPassenger(std::make_shared<Person>("Venera Vagner")); };
+			Assert::ExpectException<std::logic_error>(addPassenger, 
+				L"Cannot add passenger to a full bus");
+		}
+
+		TEST_METHOD(TestGetPassenger)
+		{
+			Bus b(50);
+			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
+			const IPerson& p = b.GetPassenger(0);
+			Assert::AreEqual("Mark Vagner"s, p.GetName(), 
+				L"Name of bus passenger is incorrect");
+		}
+
+		TEST_METHOD(TestGetPassengerWithWrongIndex)
+		{
+			Bus b(50);
+			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
+			auto getPassenger = [&]() { b.GetPassenger(10); };
+			Assert::ExpectException<std::out_of_range>(getPassenger, 
+				L"Cannot get passenger with wrong index");
+		}
+
+		TEST_METHOD(TestRemovePassenger)
+		{
+			Bus b(50);
+			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
+			b.AddPassenger(std::make_shared<Person>("Venera Vagner"));
+			b.RemovePassenger(1);
+			VerifyVehicle(b, 50, 1, false, false);
+		}
+
+		TEST_METHOD(TestRemoveSinglePassenger)
+		{
+			Bus b(50);
+			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
+			b.RemovePassenger(0);
+			VerifyVehicle(b, 50, 0, true, false);
+		}
+
+		TEST_METHOD(TestRemovePassengerWithWrongIndex)
+		{
+			Bus b(50);
+			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
+			auto removePassenger = [&]() { b.RemovePassenger(2); };
+			Assert::ExpectException<std::out_of_range>(removePassenger, 
+				L"Cannot remove passenger with wrong index");
+		}
+
+		TEST_METHOD(TestRemovePassengerWithLastPassengerIndex)
+		{
+			Bus b(50);
+			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
+			auto removePassenger = [&]() { b.RemovePassenger(1); };
+			Assert::ExpectException<std::out_of_range>(removePassenger,
+				L"Cannot remove passenger with wrong index");
+		}
+
+		TEST_METHOD(TestRemoveAllPassengers)
+		{
+			Bus b(50);
+			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
+			b.AddPassenger(std::make_shared<Person>("Venera Vagner"));
+			b.RemoveAllPassengers();
+			VerifyVehicle(b, 50, 0, true, false);
+		}
+
+		TEST_METHOD(TestRemoveAllPassengersFromEmptyBus)
+		{
+			Bus b(50);
+			b.RemoveAllPassengers();
+			VerifyVehicle(b, 50, 0, true, false);
 		}
 	};
 }

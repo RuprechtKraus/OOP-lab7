@@ -13,45 +13,93 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\People">
+      <UniqueIdentifier>{c8ac3cc9-9326-4dd5-a83a-2514875cee22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\People">
+      <UniqueIdentifier>{8000583a-959a-43bb-8d91-5e7073b64ca2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\People\Interfaces">
+      <UniqueIdentifier>{4b9b952e-eeb3-42ff-b8b7-0762df3a18ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Vehicles">
+      <UniqueIdentifier>{0d5bf473-c686-4553-9a8c-26d2db5903a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Vehicles\Intrefaces">
+      <UniqueIdentifier>{4e4f3e76-da6b-4c90-8a34-562a839de98c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Vehicles">
+      <UniqueIdentifier>{c43ba738-cbad-498e-9fb1-481bca4b2adb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VehicleLab.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Person.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="People\Person.cpp">
+      <Filter>Исходные файлы\People</Filter>
     </ClCompile>
-    <ClCompile Include="Racer.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="People\PoliceMan.cpp">
+      <Filter>Исходные файлы\People</Filter>
     </ClCompile>
-    <ClCompile Include="PoliceMan.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="People\Racer.cpp">
+      <Filter>Исходные файлы\People</Filter>
+    </ClCompile>
+    <ClCompile Include="Vehicles\Bus.cpp">
+      <Filter>Исходные файлы\Vehicles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IBasicVehicle.h">
+    <ClInclude Include="People\Person.h">
+      <Filter>Файлы заголовков\People</Filter>
+    </ClInclude>
+    <ClInclude Include="People\PersonImpl.h">
+      <Filter>Файлы заголовков\People</Filter>
+    </ClInclude>
+    <ClInclude Include="People\PoliceMan.h">
+      <Filter>Файлы заголовков\People</Filter>
+    </ClInclude>
+    <ClInclude Include="People\Racer.h">
+      <Filter>Файлы заголовков\People</Filter>
+    </ClInclude>
+    <ClInclude Include="People\Interfaces\IPerson.h">
+      <Filter>Файлы заголовков\People\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="People\Interfaces\IPoliceMan.h">
+      <Filter>Файлы заголовков\People\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="People\Interfaces\IRacer.h">
+      <Filter>Файлы заголовков\People\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicles\Interfaces\IBasicVehicle.h">
+      <Filter>Файлы заголовков\Vehicles\Intrefaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicles\Interfaces\IVehicle.h">
+      <Filter>Файлы заголовков\Vehicles\Intrefaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicles\CarBrand.h">
+      <Filter>Файлы заголовков\Vehicles</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicles\VehicleImpl.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="IPerson.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="Vehicles\Interfaces\ICar.h">
+      <Filter>Файлы заголовков\Vehicles\Intrefaces</Filter>
     </ClInclude>
-    <ClInclude Include="IPoliceMan.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="Vehicles\Interfaces\IPoliceCar.h">
+      <Filter>Файлы заголовков\Vehicles\Intrefaces</Filter>
     </ClInclude>
-    <ClInclude Include="IRacer.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="Vehicles\Interfaces\IBus.h">
+      <Filter>Файлы заголовков\Vehicles\Intrefaces</Filter>
     </ClInclude>
-    <ClInclude Include="PersonImpl.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="Vehicles\Interfaces\IRacingCar.h">
+      <Filter>Файлы заголовков\Vehicles\Intrefaces</Filter>
     </ClInclude>
-    <ClInclude Include="Person.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="Vehicles\Interfaces\ITaxi.h">
+      <Filter>Файлы заголовков\Vehicles\Intrefaces</Filter>
     </ClInclude>
-    <ClInclude Include="Racer.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="PoliceMan.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="Vehicles\Bus.h">
+      <Filter>Файлы заголовков\Vehicles</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
