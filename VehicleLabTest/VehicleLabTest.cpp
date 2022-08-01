@@ -9,6 +9,13 @@
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std::string_literals;
 
+using iPersonPtr = std::shared_ptr<IPerson>;
+
+const std::vector<iPersonPtr> TEST_PERSONS{
+	std::make_shared<Person>("Mark Vagner"),
+	std::make_shared<Person>("Venera Vagner")
+};
+
 void VerifyVehicle(
 	const IBasicVehicle& vehicle, 
 	size_t expectedPlaceCount, 
@@ -24,12 +31,12 @@ void VerifyVehicle(
 	Assert::AreEqual(expectedToBeFull, vehicle.IsFull());
 }
 
-Bus CreateBus(size_t placesCount, const std::vector<IPerson>& passengers)
+Bus CreateBus(size_t placesCount, size_t peopleCount, const std::vector<iPersonPtr>& passengers)
 {
 	Bus b(placesCount);
-	for (const auto& p : passengers)
+	for (int i = 0; i < placesCount && i < peopleCount; i++)
 	{
-		b.AddPassenger(std::make_shared<IPerson>(p));
+		b.AddPassenger(passengers[i]);
 	}
 	return b;
 }
@@ -90,23 +97,19 @@ namespace VehicleLabTest
 
 		TEST_METHOD(TestBusPropertiesWithOnePassenger)
 		{
-			Bus b(50);
-			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
+			Bus b = CreateBus(50, 1, TEST_PERSONS);
 			VerifyVehicle(b, 50, 1, false, false);
 		}
 
 		TEST_METHOD(TestFullBusProperties)
 		{
-			Bus b(2);
-			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
-			b.AddPassenger(std::make_shared<Person>("Venera Vagner"));
+			Bus b = CreateBus(2, 2, TEST_PERSONS);
 			VerifyVehicle(b, 2, 2, false, true);
 		}
 
 		TEST_METHOD(TestAddPassengerToFullBus)
 		{
-			Bus b(1);
-			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
+			Bus b = CreateBus(1, 1, TEST_PERSONS);
 			auto addPassenger = [&]() { b.AddPassenger(std::make_shared<Person>("Venera Vagner")); };
 			Assert::ExpectException<std::logic_error>(addPassenger, 
 				L"Cannot add passenger to a full bus");
@@ -114,8 +117,7 @@ namespace VehicleLabTest
 
 		TEST_METHOD(TestGetPassenger)
 		{
-			Bus b(50);
-			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
+			Bus b = CreateBus(50, 1, TEST_PERSONS);
 			const IPerson& p = b.GetPassenger(0);
 			Assert::AreEqual("Mark Vagner"s, p.GetName(), 
 				L"Name of bus passenger is incorrect");
@@ -123,8 +125,7 @@ namespace VehicleLabTest
 
 		TEST_METHOD(TestGetPassengerWithWrongIndex)
 		{
-			Bus b(50);
-			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
+			Bus b = CreateBus(50, 1, TEST_PERSONS);
 			auto getPassenger = [&]() { b.GetPassenger(10); };
 			Assert::ExpectException<std::out_of_range>(getPassenger, 
 				L"Cannot get passenger with wrong index");
@@ -132,25 +133,21 @@ namespace VehicleLabTest
 
 		TEST_METHOD(TestRemovePassenger)
 		{
-			Bus b(50);
-			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
-			b.AddPassenger(std::make_shared<Person>("Venera Vagner"));
+			Bus b = CreateBus(50, 2, TEST_PERSONS);
 			b.RemovePassenger(1);
 			VerifyVehicle(b, 50, 1, false, false);
 		}
 
 		TEST_METHOD(TestRemoveSinglePassenger)
 		{
-			Bus b(50);
-			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
+			Bus b = CreateBus(50, 1, TEST_PERSONS);
 			b.RemovePassenger(0);
 			VerifyVehicle(b, 50, 0, true, false);
 		}
 
 		TEST_METHOD(TestRemovePassengerWithWrongIndex)
 		{
-			Bus b(50);
-			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
+			Bus b = CreateBus(50, 1, TEST_PERSONS);
 			auto removePassenger = [&]() { b.RemovePassenger(2); };
 			Assert::ExpectException<std::out_of_range>(removePassenger, 
 				L"Cannot remove passenger with wrong index");
@@ -158,8 +155,7 @@ namespace VehicleLabTest
 
 		TEST_METHOD(TestRemovePassengerWithLastPassengerIndex)
 		{
-			Bus b(50);
-			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
+			Bus b = CreateBus(50, 1, TEST_PERSONS);
 			auto removePassenger = [&]() { b.RemovePassenger(1); };
 			Assert::ExpectException<std::out_of_range>(removePassenger,
 				L"Cannot remove passenger with wrong index");
@@ -167,9 +163,7 @@ namespace VehicleLabTest
 
 		TEST_METHOD(TestRemoveAllPassengers)
 		{
-			Bus b(50);
-			b.AddPassenger(std::make_shared<Person>("Mark Vagner"));
-			b.AddPassenger(std::make_shared<Person>("Venera Vagner"));
+			Bus b = CreateBus(50, 2, TEST_PERSONS);
 			b.RemoveAllPassengers();
 			VerifyVehicle(b, 50, 0, true, false);
 		}

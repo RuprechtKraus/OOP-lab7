@@ -32,7 +32,7 @@ VehicleImpl<Base>::VehicleImpl(size_t placeCount)
 	{
 		m_passengers.reserve(placeCount);
 	}
-	catch (const std::exception& e)
+	catch (const std::exception&)
 	{
 		m_placeCount = 0;
 		throw;
