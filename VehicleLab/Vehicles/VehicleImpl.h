@@ -18,6 +18,7 @@ public:
 	bool IsEmpty() const noexcept final;
 	bool IsFull() const noexcept final;
 
+protected:
 	VehicleImpl(size_t placeCount);
 
 	size_t m_placeCount;

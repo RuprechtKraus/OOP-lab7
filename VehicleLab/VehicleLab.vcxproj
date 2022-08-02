@@ -136,6 +136,8 @@
     <ClCompile Include="People\Racer.cpp" />
     <ClCompile Include="VehicleLab.cpp" />
     <ClCompile Include="Vehicles\Bus.cpp" />
+    <ClCompile Include="Vehicles\PoliceCar.cpp" />
+    <ClCompile Include="Vehicles\Taxi.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="People\Interfaces\IPerson.h" />
@@ -147,6 +149,7 @@
     <ClInclude Include="People\Racer.h" />
     <ClInclude Include="Vehicles\Bus.h" />
     <ClInclude Include="Vehicles\CarBrand.h" />
+    <ClInclude Include="Vehicles\CarImpl.h" />
     <ClInclude Include="Vehicles\Interfaces\IBasicVehicle.h" />
     <ClInclude Include="Vehicles\Interfaces\IBus.h" />
     <ClInclude Include="Vehicles\Interfaces\ICar.h" />
@@ -154,6 +157,8 @@
     <ClInclude Include="Vehicles\Interfaces\IRacingCar.h" />
     <ClInclude Include="Vehicles\Interfaces\ITaxi.h" />
     <ClInclude Include="Vehicles\Interfaces\IVehicle.h" />
+    <ClInclude Include="Vehicles\PoliceCar.h" />
+    <ClInclude Include="Vehicles\Taxi.h" />
     <ClInclude Include="Vehicles\VehicleImpl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

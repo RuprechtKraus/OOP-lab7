@@ -48,6 +48,12 @@
     <ClCompile Include="Vehicles\Bus.cpp">
       <Filter>Исходные файлы\Vehicles</Filter>
     </ClCompile>
+    <ClCompile Include="Vehicles\Taxi.cpp">
+      <Filter>Исходные файлы\Vehicles</Filter>
+    </ClCompile>
+    <ClCompile Include="Vehicles\PoliceCar.cpp">
+      <Filter>Исходные файлы\Vehicles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="People\Person.h">
@@ -80,9 +86,6 @@
     <ClInclude Include="Vehicles\CarBrand.h">
       <Filter>Файлы заголовков\Vehicles</Filter>
     </ClInclude>
-    <ClInclude Include="Vehicles\VehicleImpl.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Vehicles\Interfaces\ICar.h">
       <Filter>Файлы заголовков\Vehicles\Intrefaces</Filter>
     </ClInclude>
@@ -99,6 +102,18 @@
       <Filter>Файлы заголовков\Vehicles\Intrefaces</Filter>
     </ClInclude>
     <ClInclude Include="Vehicles\Bus.h">
+      <Filter>Файлы заголовков\Vehicles</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicles\Taxi.h">
+      <Filter>Файлы заголовков\Vehicles</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicles\VehicleImpl.h">
+      <Filter>Файлы заголовков\Vehicles</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicles\CarImpl.h">
+      <Filter>Файлы заголовков\Vehicles</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicles\PoliceCar.h">
       <Filter>Файлы заголовков\Vehicles</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,7 +2,7 @@
 #include "IVehicle.h"
 #include "CarBrand.h"
 
-template<typename Passenger>
+template <typename Passenger>
 class ICar : public IVehicle<Passenger>
 {
 public:
