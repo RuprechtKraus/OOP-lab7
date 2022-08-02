@@ -33,7 +33,7 @@ int main()
 
 	std::cout << "- Driver was shocked by the number of people in the car -" << std::endl;
 	SpeakWithName(mark, "What the heck?! Why there are two cops and legendary Michael Schumacher?!");
-	SpeakWithName(michael, "I am just taking a day-off from all of this racist.. erm.. racing things.");
+	SpeakWithName(michael, "I am just taking a day-off from all this racist.. erm.. racing things.");
 
 	Person claire("Claire Chidowski");
 
